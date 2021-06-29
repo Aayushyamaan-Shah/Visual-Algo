@@ -7,17 +7,26 @@
     <title>Visual Algorithms</title>
 </head>
 <body style="margin:0%;padding: 0%;">
-    <div style="background-color: aqua;">
-        <p>
-            This is div 1
-        </p>
-    </div>
+    <div id="elementsContainer">
+        <div id="div1" class="swapper" style="background-color: red;">
+            <p>
+                This is div 1
+            </p>
+        </div>
+    
+        <div id="div2" class="swapper" style="background-color: blueviolet;">
+            <p>
+                This is div 2
+            </p>
 
-    <div style="background-color: blueviolet;">
-        <p>
-            This is div 2
-        </p>
+        </div><div id="div3" class="swapper" style="background-color: yellow;">
+            <p>
+                This is div 3
+            </p>
+        </div>    
     </div>
+    <button id="clicker" onClick="swapper()">Wot</button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.0/gsap.min.js"></script>
     <script src="buttonClick.js"></script>
 </body>
 </html>
