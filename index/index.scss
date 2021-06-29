@@ -1,30 +1,33 @@
-div.main{
+body{
 
-    display: flex;
-    flex-direction: column;
+    div.main{
 
-    div.elementsContainer{
-        width: 80%;
-        margin-left: 5%;
-        margin-right: 5%;
-        height: 60vh;
-        border: 2px solid red;
-        
         display: flex;
-        flex-direction: row;
-        justify-content: center;
-        
-        .swapper{
-            margin-left: 0.1em;
-            margin-right: 0.1em;
-            background-color: goldenrod;
-            p{
-                display: none;
+        flex-direction: column;
+
+        div.elementsContainer{
+            width: 80%;
+            margin-left: 5%;
+            margin-right: 5%;
+            height: 60vh;
+            border: 2px solid #0d2534;
+            
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            overflow: hidden;
+            
+            .swapper{
+                margin-left: 0.05em;
+                margin-right: 0.05em;
+                p{
+                    display: none;
+                }
             }
+
         }
     }
 }
-
 div.flex_container{
     
     display: flex;
@@ -34,4 +37,12 @@ div.flex_container{
 
     margin: 2em;
 
+}
+
+div.default{
+    background-color: #194162;
+}
+
+div.selected{
+    background-color: #07cff6;
 }
