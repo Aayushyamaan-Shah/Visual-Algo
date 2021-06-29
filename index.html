@@ -4,29 +4,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./index/index.css">
+
     <title>Visual Algorithms</title>
 </head>
 <body style="margin:0%;padding: 0%;">
-    <div id="elementsContainer">
-        <div id="div1" class="swapper" style="background-color: red;">
-            <p>
-                This is div 1
-            </p>
+    <div class="main">
+        <div class="elementsContainer">
+            
         </div>
-    
-        <div id="div2" class="swapper" style="background-color: blueviolet;">
-            <p>
-                This is div 2
-            </p>
-
-        </div><div id="div3" class="swapper" style="background-color: yellow;">
-            <p>
-                This is div 3
-            </p>
-        </div>    
+        <div class="flex_container">
+            <div>
+                <input type="text" name="Element Count" id="elementCount" value="5">
+                <button id="clicker" onClick="swapper()">Wot</button>           
+            </div>
+        </div>
     </div>
-    <button id="clicker" onClick="swapper()">Wot</button>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.0/gsap.min.js"></script>
-    <script src="buttonClick.js"></script>
+    <script src="index.js"></script>
 </body>
 </html>
