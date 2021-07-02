@@ -13,6 +13,26 @@ const sleep = (milliseconds) => {
     return new Promise(resolve => setTimeout(resolve, milliseconds))
 }
 
+function funky(){
+    ctx = new (window.AudioContext || window.webkitAudioContext) ();
+    osc = ctx.createOscillator();
+    osc.connect(ctx.destination);
+    osc.frequency.value = 0;
+    osc.start(0);
+    return osc;
+}
+
+maxFrequency = 250;
+frequencyOffset = 1000;
+fun = false;
+
+document.addEventListener('keydown', e => {
+    if(e.keyCode === 81 && e.ctrlKey) {
+        fun=!fun;
+        console.log('Fun toggled');
+    }
+});
+
 // Function to create random integer between the given range
 function randomInt(min, max) {
     return Math.ceil((Math.random() * (max - min)) + min);
@@ -33,9 +53,18 @@ function updateMaxMin(){
     elementsMin = Math.min(...elementsArr);
 }
 
-// Function to cleares old elements
+// Function to cleare old elements
 function clearDOMElements() {
+    clearCounters();
     document.querySelector(`.elementsContainer`).innerHTML = '';
+}
+
+// Function to cleare all elements
+function clearElements() {
+    elementsArr = [];
+    elementCount = 0;
+    updateMaxMin();
+    clearDOMElements();
 }
 
 // Function to create and add new bars in the visualizer
@@ -49,9 +78,17 @@ function addDOMElement(val) {
     let newDiv = document.createElement("div");
     newDiv.classList.add("swapper");
     newDiv.classList.add("default");
-    newDiv.style.height = (val * 90) / elementsMax + "%";
+    if(elementsMin <= 0){
+        newDiv.style.height = (val - elementsMin) / (elementsMax - elementsMin) * 80 + 10 + "%";
+    }else{
+        newDiv.style.height = (val * 90) / (elementsMax) + "%";    
+    }
     newDiv.style.width = document.querySelector(`.elementsContainer`).clientWidth / elementCount + "%";
-    newDiv.innerHTML = "<p>" + val + "</p>";
+    if(elementsArr.length <= 15){
+        newDiv.innerHTML = "<p class='less'>" + val + "</p>";
+    }else{
+        newDiv.innerHTML = "<p class='more'>" + val + "</p>";
+    }
     document.querySelector(`.elementsContainer`).appendChild(newDiv);
 }
 
@@ -78,6 +115,7 @@ function addElement(){
 // Function to remove specific number
 function removeElement(){
     let toRemove = document.getElementById("elementManage").value;
+    let isUpdated = false;
     if(!isNaN(toRemove)){
         for(i = 0; i < elementsArr.length; i++){
             if(elementsArr[i] === parseInt(toRemove)){
@@ -86,8 +124,12 @@ function removeElement(){
                 updateMaxMin();
                 clearDOMElements();
                 initElements();
+                isUpdated = !isUpdated;
             }
         }
+    }
+    if(!isUpdated){
+        window.alert("The element you asked to remove, was not present in the array.");
     }
 }
 
@@ -112,29 +154,58 @@ function unselectDOM(element) {
     element.classList.add('default');
 }
 
+// Function to set the value of comparisons and swaps value to 0
+function initCounters(){
+    document.getElementById("comparisons").value = 0;
+    document.getElementById("swaps").value = 0;
+}
+
+// Function to clear swaps and comparisons
+function clearCounters(){
+    document.getElementById("comparisons").value = "-";
+    document.getElementById("swaps").value = "-";    
+}
+
+// Function to increment comparison's value
+function incrementComparisons(){
+    document.getElementById("comparisons").value = parseInt(document.getElementById("comparisons").value) + 1;
+}
+
+// Function to increment swap's value
+function incrementSwaps(){
+    document.getElementById("swaps").value = parseInt(document.getElementById("swaps").value) + 1;
+}
+
 // Function that sorts the elements using simple sort
-async function sortElements() {
+async function bubbleSortSimple() {
+    initCounters();
+    let funny;
+    if(fun){
+        funny = funky();
+    }
     let i = 0;
     let j = 0;
     console.log("Sorting elements");
-    for (i = 0; i < elementCount - 1; i++) {
-        for (j = i + 1; j < elementCount; j++) {
+    for (i = elementCount -1; i >= 0; i--) {
+        for (j = 0; j < i; j++) {
 
             let child1 = document.querySelector(`.swapper:nth-child(${i + 1})`);
             let child2 = document.querySelector(`.swapper:nth-child(${j + 1})`);
 
             selectDOM(child1);
             selectDOM(child2);
-            console.log(sortingSpeed[6 - speedSelector])
             await sleep(sortingSpeed[6 - speedSelector]);
-
-            if (elementsArr[i] > elementsArr[j]) {
+            if(fun){
+                funny.frequency.value = maxFrequency * ((elementsArr[j] - elementsMin) / (elementsMax - elementsMin)) + frequencyOffset;
+            }
+            incrementComparisons();
+            if (elementsArr[i] < elementsArr[j]) {
 
                 let temp = elementsArr[j];
                 elementsArr[j] = elementsArr[i];
                 elementsArr[i] = temp;
-
                 swapDom(child1, child2);
+                incrementSwaps();
             }
 
             child1 = document.querySelector(`.swapper:nth-child(${i + 1})`);
@@ -145,7 +216,10 @@ async function sortElements() {
         }
 
     }
-    console.log("OUF");
+    if(fun){
+        funny.frequency.value = 0;
+        funny.stop();
+    }
     console.log(elementsArr)
 }
 
@@ -170,7 +244,16 @@ function sorter() {
     document.getElementById('clicker').disabled = true;
     document.getElementById('sortClicker').disabled = true;
 
-    sortElements();
+
+    switch(document.getElementById("sortType").value){
+        case "bubbleSimple": bubbleSortSimple();
+        case "bubbleConservative": bubbleSortConservative();
+        case "selection": selectionSort();
+        case "insertion": insertionSort();
+        case "merge": mergeSort();
+        case "quick": quickSort();
+        case "heap": heapSort();
+    }
 
     document.getElementById('clicker').disabled = false;
     document.getElementById('sortClicker').disabled = false;
