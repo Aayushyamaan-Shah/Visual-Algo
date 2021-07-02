@@ -6,6 +6,12 @@ body div.main {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 body div.main div.elementsContainer {
@@ -47,10 +53,14 @@ div.flex_container {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin: 2em;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  margin: 1em;
+}
+
+div.flex_container div {
+  margin: 1em;
 }
 
 div.default {
@@ -60,4 +70,4 @@ div.default {
 div.selected {
   background-color: #07cff6;
 }
-/*# sourceMappingURL=index.css.map */
+/*# sourceMappingURL=visualize.css.map */

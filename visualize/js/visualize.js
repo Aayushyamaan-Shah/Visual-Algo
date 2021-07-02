@@ -3,12 +3,12 @@
 
 selectedPos1 = 1;
 selectedPos2 = 2;
-elementCount = 5;
+elementCount = 0;
 elementsArr = [];
 elementsMax = 0;
 elementsMin = 0;
 speedSelector = 4;
-sortingSpeed = [2.5, 10, 50, 250, 500];
+sortingSpeed = [0, 2.5, 10, 50, 250, 500];
 const sleep = (milliseconds) => {
     return new Promise(resolve => setTimeout(resolve, milliseconds))
 }
@@ -23,9 +23,14 @@ function initArr() {
     for (let k = 0; k < elementCount; k++) {
         elementsArr.push(randomInt(5, 999));
     }
+    updateMaxMin();
+    console.log(elementsArr)
+}
+
+// Function to update min and max
+function updateMaxMin(){
     elementsMax = Math.max(...elementsArr);
     elementsMin = Math.min(...elementsArr);
-    console.log(elementsArr)
 }
 
 // Function to cleares old elements
@@ -54,6 +59,35 @@ function addDOMElement(val) {
 function initElements() {
     for (let i = 0; i < elementCount; i++) {
         addDOMElement(elementsArr[i]);
+    }
+}
+
+// Function to add specific number
+function addElement(){
+    let toAdd = document.getElementById("elementManage").value;
+    if(!isNaN(toAdd)){
+        elementsArr.push(parseInt(toAdd));
+        elementCount++;
+        updateMaxMin();
+        clearDOMElements();
+        initElements();
+    }
+}
+
+
+// Function to remove specific number
+function removeElement(){
+    let toRemove = document.getElementById("elementManage").value;
+    if(!isNaN(toRemove)){
+        for(i = 0; i < elementsArr.length; i++){
+            if(elementsArr[i] === parseInt(toRemove)){
+                elementsArr.splice(i,1);
+                elementCount--;
+                updateMaxMin();
+                clearDOMElements();
+                initElements();
+            }
+        }
     }
 }
 
@@ -91,8 +125,8 @@ async function sortElements() {
 
             selectDOM(child1);
             selectDOM(child2);
-            console.log(sortingSpeed[5 - speedSelector])
-            await sleep(sortingSpeed[5 - speedSelector]);
+            console.log(sortingSpeed[6 - speedSelector])
+            await sleep(sortingSpeed[6 - speedSelector]);
 
             if (elementsArr[i] > elementsArr[j]) {
 

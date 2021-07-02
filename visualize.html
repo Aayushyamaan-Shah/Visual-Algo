@@ -20,16 +20,37 @@
                 <button id="clicker" onClick="primer()">Generate</button>           
                 <button id="sortClicker" onClick="sorter()">Sort</button>           
             </div>
+            <div>
+                <input type="text" name="Element Manager" id="elementManage" value="">
+                <button id="addElement" onClick="addElement()">Add</button>           
+                <button id="removeElement" onClick="removeElement()">Remove</button>           
+            </div>
         </div>
         <div class="flex_container">
             <div>
                 <label for="speed">Speed: </label>
-                <input id="speed" onClick="updateSpeed()" type="range" max="5" min="1" value="4" name="Speed">
+                <input id="speed" onClick="updateSpeed()" type="range" max="6" min="1" value="4" name="Speed">
+            </div>
+        </div>
+        
+        <div class="flex_container">
+            <div>
+                <label for="sortType">Algorithm: </label>
+                <select name="sortType" id="sortType">
+                    <option value="bubble">Bubble Sort</option>
+                    <option value="selection">Selection Sort</option>
+                    <option value="insertion">Insertion Sort</option>
+                    <option value="merge">Merge Sort</option>
+                    <option value="heap">Heap Sort</option>
+                    <option value="quick">Quick Sort</option>
+                  </select>
             </div>
         </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.0/gsap.min.js"></script>
     <script src="./visualize/js/visualize.js"></script>
+    <script src="./sounds/playKeyBoard.js"></script>
+    <script src="./sounds/audiosynth.js"></script>
 </body>
 </html>
