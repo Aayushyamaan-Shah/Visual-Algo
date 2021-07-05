@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="./visualize/css/visualize.css">
+    <link rel="stylesheet" href="./sorting/css/sorting.css">
 
     <title>Visual Algorithms</title>
 </head>
@@ -24,7 +24,7 @@
             <div>
                 <input type="text" name="Element Count" id="elementCount" value="5">
                 <button id="clicker" onClick="primer()">Generate</button>           
-                <button id="sortClicker" onClick="sorter()">Sort</button>           
+                <button id="sortClicker" onClick="sorter()">Sort</button>
             </div>
             <div>
                 <input type="text" name="Element Manager" id="elementManage" value="">
@@ -37,10 +37,9 @@
                 <input id="speed" onClick="updateSpeed()" type="range" max="6" min="1" value="4" name="Speed">
                 <label for="sortType">Algorithm: </label>
                 <select name="sortType" id="sortType">
-                    
+                    <option value="simple">Simple Sort</option>
                     <option value="bubbleSimple">Bubble Sort (simple)</option>
                     <option value="bubbleConservative">Bubble Sort (conservative)</option>
-
                     <option value="selection">Selection Sort</option>
                     <option value="insertion">Insertion Sort</option>
                     <option value="merge">Merge Sort</option>
@@ -48,11 +47,18 @@
                     <option value="quick">Quick Sort</option>
                   </select>
             </div>
+            <div>
+                <label for="sortStyle">Sort style: </label>
+                <select name="sortStyle" id="sortStyle">
+                    <option value="aescending">Aescending</option>
+                    <option value="quick">Descending</option>
+                  </select>
+            </div>
         </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.0/gsap.min.js"></script>
-    <script src="./visualize/js/visualize.js"></script>
+    <script src="./sorting/js/sorting.js"></script>
     <script src="./sounds/playKeyBoard.js"></script>
     <script src="./sounds/audiosynth.js"></script>
 </body>
