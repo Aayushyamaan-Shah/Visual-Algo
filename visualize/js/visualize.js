@@ -13,6 +13,8 @@ const sleep = (milliseconds) => {
     return new Promise(resolve => setTimeout(resolve, milliseconds))
 }
 
+sortStyle = false; // False = Aescending || True = Descending
+
 function funky(){
     ctx = new (window.AudioContext || window.webkitAudioContext) ();
     osc = ctx.createOscillator();
@@ -109,6 +111,7 @@ function addElement(){
         clearDOMElements();
         initElements();
     }
+    document.getElementById("elementManage").value = "";
 }
 
 
@@ -131,6 +134,7 @@ function removeElement(){
     if(!isUpdated){
         window.alert("The element you asked to remove, was not present in the array.");
     }
+    document.getElementById("elementManage").value = "";
 }
 
 // Function to swap 2 HTML elements
@@ -177,6 +181,53 @@ function incrementSwaps(){
 }
 
 // Function that sorts the elements using simple sort
+async function simpleSort() {
+    initCounters();
+    let funny;
+    if(fun){
+        funny = funky();
+    }
+    let i = 0;
+    let j = 0;
+    console.log("Sorting elements - Bubble Sort");
+    for (i = elementCount -1; i >= 0; i--) {
+        for (j = 0; j < i; j++) {
+
+            let child1 = document.querySelector(`.swapper:nth-child(${i + 1})`);
+            let child2 = document.querySelector(`.swapper:nth-child(${j + 1})`);
+
+            selectDOM(child1);
+            selectDOM(child2);
+            await sleep(sortingSpeed[6 - speedSelector]);
+            if(fun){
+                funny.frequency.value = maxFrequency * ((elementsArr[j] - elementsMin) / (elementsMax - elementsMin)) + frequencyOffset;
+            }
+            incrementComparisons();
+            if ((sortStyle)? elementsArr[i] > elementsArr[j] : elementsArr[i] < elementsArr[j]) {
+
+                let temp = elementsArr[j];
+                elementsArr[j] = elementsArr[i];
+                elementsArr[i] = temp;
+                swapDom(child1, child2);
+                incrementSwaps();
+            }
+
+            child1 = document.querySelector(`.swapper:nth-child(${i + 1})`);
+            child2 = document.querySelector(`.swapper:nth-child(${j + 1})`);
+            unselectDOM(child1);
+            unselectDOM(child2);
+
+        }
+
+    }
+    if(fun){
+        funny.frequency.value = 0;
+        funny.stop();
+    }
+    console.log(elementsArr)
+}
+
+// Function that sorts the elements using bubble sort
 async function bubbleSortSimple() {
     initCounters();
     let funny;
@@ -185,7 +236,104 @@ async function bubbleSortSimple() {
     }
     let i = 0;
     let j = 0;
-    console.log("Sorting elements");
+    console.log("Sorting elements - Bubble Sort");
+    for (i = elementCount -1; i >= 0; i--) {
+        for (j = 0; j < i; j++) {
+
+            let child1 = document.querySelector(`.swapper:nth-child(${j + 1})`);
+            let child2 = document.querySelector(`.swapper:nth-child(${j + 2})`);
+
+            selectDOM(child1);
+            selectDOM(child2);
+            await sleep(sortingSpeed[6 - speedSelector]);
+            if(fun){
+                funny.frequency.value = maxFrequency * ((elementsArr[j] - elementsMin) / (elementsMax - elementsMin)) + frequencyOffset;
+            }
+            incrementComparisons();
+            if ((sortStyle)? elementsArr[j] < elementsArr[j+1] : elementsArr[j] > elementsArr[j+1]) {
+
+                let temp = elementsArr[j+1];
+                elementsArr[j+1] = elementsArr[j];
+                elementsArr[j] = temp;
+                swapDom(child1, child2);
+                incrementSwaps();
+            }
+
+            child1 = document.querySelector(`.swapper:nth-child(${j + 1})`);
+            child2 = document.querySelector(`.swapper:nth-child(${j + 2})`);
+            unselectDOM(child1);
+            unselectDOM(child2);
+
+        }
+
+    }
+    if(fun){
+        funny.frequency.value = 0;
+        funny.stop();
+    }
+    console.log(elementsArr)
+}
+
+// Function that sorts the elements using bubble sort in conservative fashion
+async function bubbleSortConservative() {
+    initCounters();
+    let funny;
+    if(fun){
+        funny = funky();
+    }
+    let i = 0;
+    let j = 0;
+    console.log("Sorting elements - Bubble Sort");
+    for (i = elementCount -1; i >= 0; i--) {
+        let swapped = true;
+        for (j = 0; j < i; j++) {
+
+            let child1 = document.querySelector(`.swapper:nth-child(${j + 1})`);
+            let child2 = document.querySelector(`.swapper:nth-child(${j + 2})`);
+
+            selectDOM(child1);
+            selectDOM(child2);
+            await sleep(sortingSpeed[6 - speedSelector]);
+            if(fun){
+                funny.frequency.value = maxFrequency * ((elementsArr[j] - elementsMin) / (elementsMax - elementsMin)) + frequencyOffset;
+            }
+            incrementComparisons();
+            if ((sortStyle)? elementsArr[j] < elementsArr[j+1] : elementsArr[j] > elementsArr[j+1]) {
+                let temp = elementsArr[j+1];
+                elementsArr[j+1] = elementsArr[j];
+                elementsArr[j] = temp;
+                swapDom(child1, child2);
+                incrementSwaps();
+                swapped = false;
+            }
+
+            child1 = document.querySelector(`.swapper:nth-child(${j + 1})`);
+            child2 = document.querySelector(`.swapper:nth-child(${j + 2})`);
+            unselectDOM(child1);
+            unselectDOM(child2);
+
+        }
+        if(swapped){
+            break;
+        }
+    }
+    if(fun){
+        funny.frequency.value = 0;
+        funny.stop();
+    }
+    console.log(elementsArr)
+}
+
+// Function that sorts the elements using selection sort
+async function selectionSort() {
+    initCounters();
+    let funny;
+    if(fun){
+        funny = funky();
+    }
+    let i = 0;
+    let j = 0;
+    console.log("Sorting elements - Selection Sort");
     for (i = elementCount -1; i >= 0; i--) {
         for (j = 0; j < i; j++) {
 
@@ -241,20 +389,25 @@ function primer() {
 // Function that calls the sorting function
 function sorter() {
 
-    document.getElementById('clicker').disabled = true;
-    document.getElementById('sortClicker').disabled = true;
+//   document.getElementById('clicker').disabled = true;
+//    document.getElementById('sortClicker').disabled = true;
 
-
+    sortStyle = document.getElementById('sortStyle').value;
+    sortStyle = (sortStyle === 'aescending')? false: true;
+    console.log(sortStyle);
     switch(document.getElementById("sortType").value){
-        case "bubbleSimple": bubbleSortSimple();
-        case "bubbleConservative": bubbleSortConservative();
-        case "selection": selectionSort();
-        case "insertion": insertionSort();
-        case "merge": mergeSort();
-        case "quick": quickSort();
-        case "heap": heapSort();
+        case "simple": simpleSort();break;
+        case "bubbleSimple": bubbleSortSimple();break;
+        case "bubbleConservative": bubbleSortConservative();break;
+        case "selection": selectionSort();break;
+        case "insertion": insertionSort();break;
+        case "merge": mergeSort();break;
+        case "quick": quickSort();break;
+        case "heap": heapSort();break;
     }
 
-    document.getElementById('clicker').disabled = false;
-    document.getElementById('sortClicker').disabled = false;
+//    document.getElementById('clicker').disabled = false;
+//    document.getElementById('sortClicker').disabled = false;
+
+
 }
