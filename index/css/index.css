@@ -230,16 +230,18 @@ body .panels .panel .cards-layout {
           align-items: center;
   padding: 0;
   margin: 0;
+  height: 100%;
 }
 
 body .panels .panel .cards-layout .title {
+  height: 30%;
   text-align: center;
 }
 
 body .panels .panel .cards-layout .title .header {
   color: #e8eaed;
   font-size: 4em;
-  padding-top: 10%;
+  padding-top: 20%;
 }
 
 body .panels .panel .cards-layout .title .description {
@@ -251,35 +253,34 @@ body .panels .panel .cards-layout .title .description {
 body .panels .panel .cards-layout .cards {
   width: 100%;
   margin: 0;
-  padding: 3rem;
-  height: 60%;
+  height: 70%;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr 1fr;
       grid-template-columns: 1fr 1fr 1fr;
-  gap: 3rem;
+  gap: 1.5rem;
+  place-items: center;
+}
+
+body .panels .panel .cards-layout .cards a.card-linker {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
 }
 
 body .panels .panel .cards-layout .cards a.card-linker .card {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   position: relative;
-  width: 15rem;
-  height: 15rem;
-  border-radius: 30px;
+  width: 18rem;
+  height: 18rem;
+  border-radius: 40px;
   overflow: hidden;
 }
 
 body .panels .panel .cards-layout .cards a.card-linker .card .background-image {
-  width: 100%;
-  height: 100%;
+  inset: 0;
   position: absolute;
   background-color: #202124;
   background-image: url("../images/card.jpg");
@@ -287,12 +288,58 @@ body .panels .panel .cards-layout .cards a.card-linker .card .background-image {
   background-size: cover;
 }
 
+body .panels .panel .cards-layout .cards a.card-linker .card .title-background {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30%;
+  width: 100%;
+  background-color: white;
+  z-index: 1;
+  border-top-left-radius: 30px;
+}
+
+body .panels .panel .cards-layout .cards a.card-linker .card .title-background .card-arc {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  z-index: 1;
+}
+
+body .panels .panel .cards-layout .cards a.card-linker .card .title-background .card-arc path {
+  fill: white;
+}
+
 body .panels .panel .cards-layout .cards a.card-linker .card .title {
   text-decoration: none;
-  color: #fd99b8;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: #f15b8a;
   position: absolute;
-  bottom: 1.5rem;
   font-size: 2em;
+  z-index: 2;
+  margin: 0;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+body .panels .panel .cards-layout .cards a.card-linker .card .title .text {
+  margin: 0;
+  padding-top: 1.35rem;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
 }
 
 body .panels .panel .cards-layout .cards a:hover a:link a:visited a:focus a:active .title {
