@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./index/css/index.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:wght@500&display=swap">
+    
+    <title>Visual Algorithms</title>
+</head>
+<body id="page-top">
+
+    <div class="navbar">
+        <div>
+            <a class="navigation" onclick="scrollToTop()">
+                <img src="./index/images/logo_thic.svg" alt="logo" id="logo" class="logo">
+                <p id="besideLogo" class="besideLogo">
+                    Algorithm Vizualizer
+                </p>
+            </a>
+        </div>
+    </div>
+    <div class="panels" id ="panels" onscroll="navbarTextHeight()">
+
+        <!--The hero panel-->
+        <div id="panel" class="panel">
+            <div class="hero">
+                <div class="title">
+                    <div>A</div>
+                    <div>l</div>
+                    <div>g</div>
+                    <div>o</div>
+                    <div>r</div>
+                    <div>i</div>
+                    <div>t</div>
+                    <div>h</div>
+                    <div>m</div>
+                    
+                    <div>V</div>
+                    <div>i</div>
+                    <div>s</div>
+                    <div>u</div>
+                    <div>l</div>
+                    <div>a</div>
+                    <div>i</div>
+                    <div>z</div>
+                    <div>e</div>
+                    <div>r</div>
+                </div>
+                <div class="description">
+                    <p>
+                        A simple tool to learn complex algorithms.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!--First pannel panel - Easy-->
+        <div id="panel" class="panel" >
+            <div class="content">
+                <div class="text">
+                    <div class="header">
+                        It makes learning<br><u>Easy</u>
+                    </div>
+                    <div class="description">
+                        When you start to see things that you are learning, you start to understand the concepts O(log n) times faster.
+                    </div>
+                </div>
+                <div class = "images">
+                    <img src="./index/images/To the moon.png" alt="Simple">
+                </div>
+            </div>
+        </div>
+
+        <!--Second pannel panel - Fun-->
+        <div id="panel" class="panel" >
+            <div class="content">
+                <div class="text">
+                    <div class="header">
+                        Learning becomes<br><u>Fun</u>
+                    </div>
+                    <div class="description">
+                        Visual learning makes it fun and keeps your attention on the subject for longer. 
+                    </div>
+                </div>
+                <div class = "images">
+                    <img src="./index/images/kinder-garden.png" alt="Simple">
+                </div>
+            </div>
+        </div>
+
+        <!--Third pannel panel - Simple-->
+        <div id="panel" class="panel" >
+            <div class="content">
+                <div class="text">
+                    <div class="header">
+                        Things made<br><u>Simple</u>
+                    </div>
+                    <div class="description">
+                        We believe in simplicity and hence provide you tools to visualize algorithms that are very 
+                        easy to use and are soft on your eyes.
+                    </div>
+                </div>
+                <div class = "images">
+                    <img src="./index/images/Looks study is music.png" alt="Simple">
+                </div>
+            </div>
+        </div>
+
+        <!--Fourth pannel panel - Cards-->
+        <div id="panel" class="panel" >
+            <div class="cards-layout">
+                <div class="title">
+                    <div class="header">
+                        Algorithms
+                    </div>
+                    <div class="description">
+                        The following are all the algorithm categories available.
+                    </div>
+                </div>
+                <div class="cards">
+                    <!--Card - Sorting-->
+                    
+                    <a class="card-linker" href="./sorting.html" >
+                        <div class="card">
+                                <div class="background-image">
+                                    
+                                </div>
+                                <div class="title">
+                                    Sorting
+                                </div>
+                        </div>
+                    </a>
+
+                    
+                    <!--Card - Searching-->
+                    <div class="card">
+                        <div class="background-image">
+                            
+                        </div>
+                        <div class="title">
+                            Sorting
+                        </div>
+                    </div>
+                    
+                    <!--Card - Trees-->
+                    <div class="card">
+                        <div class="background-image">
+                            
+                        </div>
+                        <div class="title">
+                            Sorting
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.0/gsap.min.js"></script>
+    <script>
+        document.onload = e=>{
+            gsap.to("p.besideLogo", {
+                autoAlpha: 0,
+                ease: "ease-in-out",
+                duration: 0
+                }).play;
+            
+        };
+        function scrollToTop(){
+            element = document.getElementById("panels").scrollTo({top:0, behavior:"smooth"});
+        }
+        function navbarTextHeight(){
+            element = document.getElementById("panels");
+            if(Math.ceil(element.scrollTop *100 / element.scrollHeight) >= 10 && document.getElementById("besideLogo").style.opacity == 0){
+                gsap.to("p.besideLogo", {
+                autoAlpha: 1,
+                ease: "ease-in-out",
+                duration: 0.55
+                }).play;
+            }else if(Math.ceil(element.scrollTop *100 / element.scrollHeight) < 10 && document.getElementById("besideLogo").style.opacity == 1){
+                gsap.to("p.besideLogo", {
+                autoAlpha: 0,
+                ease: "ease-in-out",
+                duration: 0.55
+                }).play;
+            }
+        }
+    </script>
+</body>
+</html>
