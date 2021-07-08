@@ -241,7 +241,7 @@ body .panels .panel .cards-layout .title {
 body .panels .panel .cards-layout .title .header {
   color: #e8eaed;
   font-size: 4em;
-  padding-top: 20%;
+  padding-top: 12%;
 }
 
 body .panels .panel .cards-layout .title .description {
@@ -273,8 +273,8 @@ body .panels .panel .cards-layout .cards a.card-linker {
 
 body .panels .panel .cards-layout .cards a.card-linker .card {
   position: relative;
-  width: 18rem;
-  height: 18rem;
+  width: 16rem;
+  height: 16rem;
   border-radius: 40px;
   overflow: hidden;
 }
@@ -283,7 +283,7 @@ body .panels .panel .cards-layout .cards a.card-linker .card .background-image {
   inset: 0;
   position: absolute;
   background-color: #202124;
-  background-image: url("../images/card.jpg");
+  background-image: url("../images/comming-soon.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -336,10 +336,19 @@ body .panels .panel .cards-layout .cards a.card-linker .card .title {
 
 body .panels .panel .cards-layout .cards a.card-linker .card .title .text {
   margin: 0;
-  padding-top: 1.35rem;
+  padding-top: 1rem;
   display: table-cell;
   vertical-align: middle;
   text-align: center;
+}
+
+body .panels .panel .cards-layout .cards a.card-linker .card .unsorted-image {
+  background-image: url("../images/Unsorted.png");
+}
+
+body .panels .panel .cards-layout .cards a.card-linker .card .sorting-gif {
+  opacity: 0;
+  background-image: url("../images/sorting-transparent.gif");
 }
 
 body .panels .panel .cards-layout .cards a:hover a:link a:visited a:focus a:active .title {
@@ -364,5 +373,10 @@ body .panels :nth-child(even) .images {
   -webkit-box-ordinal-group: 2;
       -ms-flex-order: 1;
           order: 1;
+}
+
+.pause {
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
 }
 /*# sourceMappingURL=index.css.map */

@@ -124,9 +124,10 @@
                 <div class="cards">
                     <!--Card - Sorting-->
                     
-                    <a class="card-linker" href="./sorting.html" >
+                    <a class="card-linker" href="./sorting.html" onmouseover="sorting_gif()" onmouseout="sorting_png()">
                         <div class="card">
-                                <div class="background-image"></div>
+                                <div class="background-image unsorted-image" id="unsorted-image"></div>
+                                <div class="background-image sorting-gif" id="sorting-gif"></div>
                                 <div class="title-background">
                                     <svg class="card-arc" xmlns="http://www.w3.org/2000/svg"><path d="M 40 80 c 22 0 40 -22 40 -40 v 40 Z"/></svg>
                                 </div>
@@ -140,9 +141,9 @@
 
                     
                     <!--Card - Searching-->
-                    <a class="card-linker" href="./sorting.html" >
+                    <a class="card-linker" href="#" >
                         <div class="card">
-                                <div class="background-image"></div>
+                                <div class="background-image searching"></div>
                                 <div class="title-background">
                                     <svg class="card-arc" xmlns="http://www.w3.org/2000/svg"><path d="M 40 80 c 22 0 40 -22 40 -40 v 40 Z"/></svg>
                                 </div>
@@ -155,9 +156,9 @@
                     </a>
                     
                     <!--Card - Trees-->
-                    <a class="card-linker" href="./sorting.html" >
+                    <a class="card-linker" href="#" >
                         <div class="card">
-                                <div class="background-image"></div>
+                                <div class="background-image trees"></div>
                                 <div class="title-background">
                                     <svg class="card-arc" xmlns="http://www.w3.org/2000/svg"><path d="M 40 80 c 22 0 40 -22 40 -40 v 40 Z"/></svg>
                                 </div>
@@ -203,6 +204,17 @@
                 duration: 0.55
                 }).play;
             }
+        }
+
+        function sorting_gif(){
+            console.log("Hovered");
+            document.getElementById("unsorted-image").style.opacity = 0;
+            document.getElementById("sorting-gif").style.opacity = 1;
+        }
+        function sorting_png(){
+            console.log("OUT");
+            document.getElementById("unsorted-image").style.opacity = 1;
+            document.getElementById("sorting-gif").style.opacity = 0;
         }
     </script>
 </body>

@@ -170,7 +170,7 @@ body{
                     .header{
                         color: $color-font-dt-main;
                         font-size: 4em;
-                        padding-top: 20%;
+                        padding-top: 12%;
                     }
                     .description{
                         color: $color-font-dt-subs;
@@ -193,8 +193,8 @@ body{
 
                         .card{
                             position: relative;
-                            width: 18rem;
-                            height: 18rem;
+                            width: 16rem;
+                            height: 16rem;
                             border-radius: 40px;
                             overflow: hidden;
     
@@ -202,10 +202,11 @@ body{
                                 inset: 0;
                                 position: absolute;
                                 background-color: $color-background-dt;
-                                background-image: url("../images/card.jpg");
+                                background-image: url("../images/comming-soon.png");
                                 background-repeat: no-repeat;
                                 background-size: cover;
                             }
+
                             .title-background{
                                 position: absolute;
                                 bottom: 0;
@@ -246,13 +247,19 @@ body{
                                 justify-content: center;
                                 .text{
                                     margin: 0;
-                                    padding-top: 1.35rem;
+                                    padding-top: 1rem;
                                     display: table-cell;
                                     vertical-align: middle;
                                     text-align: center;
                                 }
                             }
-                            
+                            .unsorted-image{
+                                background-image: url("../images/Unsorted.png");
+                            }
+                            .sorting-gif{
+                                opacity: 0;
+                                background-image: url("../images/sorting-transparent.gif");
+                            }
                         }
                     
                     }
@@ -285,4 +292,8 @@ body{
         }
     }
 
+}
+
+.pause{
+    animation-play-state: paused;
 }
