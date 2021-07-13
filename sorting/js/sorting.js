@@ -46,7 +46,6 @@ function initArr() {
         elementsArr.push(randomInt(5, 999));
     }
     updateMaxMin();
-    console.log(elementsArr)
 }
 
 // Function to update min and max
@@ -138,23 +137,47 @@ function removeElement(){
 }
 
 // Function to swap 2 HTML elements
-async function swapDom(el1, el2) {
-    let cloneEl1 = el1.cloneNode(true);
-    let cloneEl2 = el2.cloneNode(true);
+async function swapDom(number1, number2) {
+    if(number1 != number2){
+        let el1 = document.querySelector(`.swapper:nth-child(${number1 + 1})`);
+        let el2 = document.querySelector(`.swapper:nth-child(${number2 + 1})`);
 
-    el1.parentNode.replaceChild(cloneEl2, el1);
-    el2.parentNode.replaceChild(cloneEl1, el2);
+        let cloneEl1 = el1.cloneNode(true);
+        let cloneEl2 = el2.cloneNode(true);
+
+        el1.parentNode.replaceChild(cloneEl2, el1);
+        el2.parentNode.replaceChild(cloneEl1, el2);
+        await sleep(sortingSpeed[6 - speedSelector]);
+    }
 }
 
 // Function to apply color when the element is selected
-function selectDOM(element) {
+function selectDOM(index) {
+    let element = document.querySelector(`.swapper:nth-child(${index + 1})`);
+
     element.classList.remove('default');
     element.classList.add('selected');
 }
 
 // Function to remove the color when the element is no longer selected
-function unselectDOM(element) {
+function unselectDOM(index) {
+    let element = document.querySelector(`.swapper:nth-child(${index + 1})`);
+
     element.classList.remove('selected');
+    element.classList.add('default');
+}
+
+// Function to apply color when the element is selected
+function selectDOMPivot(index) {
+    let element = document.querySelector(`.swapper:nth-child(${index + 1})`);
+    element.classList.remove('default');
+    element.classList.add('selected-pivot');
+}
+
+// Function to remove the color when the element is no longer selected
+function unselectDOMPivot(index) {
+    let element = document.querySelector(`.swapper:nth-child(${index + 1})`);
+    element.classList.remove('selected-pivot');
     element.classList.add('default');
 }
 
@@ -189,15 +212,11 @@ async function simpleSort() {
     }
     let i = 0;
     let j = 0;
-    console.log("Sorting elements - Bubble Sort");
     for (i = elementCount -1; i >= 0; i--) {
         for (j = 0; j < i; j++) {
 
-            let child1 = document.querySelector(`.swapper:nth-child(${i + 1})`);
-            let child2 = document.querySelector(`.swapper:nth-child(${j + 1})`);
-
-            selectDOM(child1);
-            selectDOM(child2);
+            selectDOM(i);
+            selectDOM(j);
             await sleep(sortingSpeed[6 - speedSelector]);
             if(fun){
                 funny.frequency.value = maxFrequency * ((elementsArr[j] - elementsMin) / (elementsMax - elementsMin)) + frequencyOffset;
@@ -208,14 +227,12 @@ async function simpleSort() {
                 let temp = elementsArr[j];
                 elementsArr[j] = elementsArr[i];
                 elementsArr[i] = temp;
-                swapDom(child1, child2);
+                swapDom(i, j);
                 incrementSwaps();
             }
 
-            child1 = document.querySelector(`.swapper:nth-child(${i + 1})`);
-            child2 = document.querySelector(`.swapper:nth-child(${j + 1})`);
-            unselectDOM(child1);
-            unselectDOM(child2);
+            unselectDOM(i);
+            unselectDOM(j);
 
         }
 
@@ -224,7 +241,6 @@ async function simpleSort() {
         funny.frequency.value = 0;
         funny.stop();
     }
-    console.log(elementsArr)
 }
 
 // Function that sorts the elements using bubble sort
@@ -236,15 +252,11 @@ async function bubbleSortSimple() {
     }
     let i = 0;
     let j = 0;
-    console.log("Sorting elements - Bubble Sort");
     for (i = elementCount -1; i >= 0; i--) {
         for (j = 0; j < i; j++) {
 
-            let child1 = document.querySelector(`.swapper:nth-child(${j + 1})`);
-            let child2 = document.querySelector(`.swapper:nth-child(${j + 2})`);
-
-            selectDOM(child1);
-            selectDOM(child2);
+            selectDOM(j);
+            selectDOM(j+1);
             await sleep(sortingSpeed[6 - speedSelector]);
             if(fun){
                 funny.frequency.value = maxFrequency * ((elementsArr[j] - elementsMin) / (elementsMax - elementsMin)) + frequencyOffset;
@@ -255,14 +267,12 @@ async function bubbleSortSimple() {
                 let temp = elementsArr[j+1];
                 elementsArr[j+1] = elementsArr[j];
                 elementsArr[j] = temp;
-                swapDom(child1, child2);
+                swapDom(j, j+1);
                 incrementSwaps();
             }
 
-            child1 = document.querySelector(`.swapper:nth-child(${j + 1})`);
-            child2 = document.querySelector(`.swapper:nth-child(${j + 2})`);
-            unselectDOM(child1);
-            unselectDOM(child2);
+            unselectDOM(j);
+            unselectDOM(j+1);
 
         }
 
@@ -271,7 +281,6 @@ async function bubbleSortSimple() {
         funny.frequency.value = 0;
         funny.stop();
     }
-    console.log(elementsArr)
 }
 
 // Function that sorts the elements using bubble sort in conservative fashion
@@ -283,16 +292,12 @@ async function bubbleSortConservative() {
     }
     let i = 0;
     let j = 0;
-    console.log("Sorting elements - Bubble Sort");
     for (i = elementCount -1; i >= 0; i--) {
         let swapped = true;
         for (j = 0; j < i; j++) {
 
-            let child1 = document.querySelector(`.swapper:nth-child(${j + 1})`);
-            let child2 = document.querySelector(`.swapper:nth-child(${j + 2})`);
-
-            selectDOM(child1);
-            selectDOM(child2);
+            selectDOM(j);
+            selectDOM(j+1);
             await sleep(sortingSpeed[6 - speedSelector]);
             if(fun){
                 funny.frequency.value = maxFrequency * ((elementsArr[j] - elementsMin) / (elementsMax - elementsMin)) + frequencyOffset;
@@ -302,15 +307,13 @@ async function bubbleSortConservative() {
                 let temp = elementsArr[j+1];
                 elementsArr[j+1] = elementsArr[j];
                 elementsArr[j] = temp;
-                swapDom(child1, child2);
+                swapDom(j, j+1);
                 incrementSwaps();
-                swapped = false;
+                swapped = false;            
             }
 
-            child1 = document.querySelector(`.swapper:nth-child(${j + 1})`);
-            child2 = document.querySelector(`.swapper:nth-child(${j + 2})`);
-            unselectDOM(child1);
-            unselectDOM(child2);
+            unselectDOM(j);
+            unselectDOM(j+1);
 
         }
         if(swapped){
@@ -321,10 +324,9 @@ async function bubbleSortConservative() {
         funny.frequency.value = 0;
         funny.stop();
     }
-    console.log(elementsArr)
 }
 
-// Function that sorts the elements using selection sort
+// Function that sorts the elements using bubble sort in conservative fashion
 async function selectionSort() {
     initCounters();
     let funny;
@@ -333,42 +335,43 @@ async function selectionSort() {
     }
     let i = 0;
     let j = 0;
-    console.log("Sorting elements - Selection Sort");
-    for (i = elementCount -1; i >= 0; i--) {
-        for (j = 0; j < i; j++) {
 
-            let child1 = document.querySelector(`.swapper:nth-child(${i + 1})`);
-            let child2 = document.querySelector(`.swapper:nth-child(${j + 1})`);
-
-            selectDOM(child1);
-            selectDOM(child2);
+    // One by one move boundary of unsorted subarray
+    for (i = 0; i < elementCount-1; i++)
+    {
+        // Find the minimum element in unsorted array
+        let min_idx = i;
+        selectDOMPivot(min_idx);
+        for (j = i+1; j < elementCount; j++){
+            selectDOM(j);
             await sleep(sortingSpeed[6 - speedSelector]);
-            if(fun){
-                funny.frequency.value = maxFrequency * ((elementsArr[j] - elementsMin) / (elementsMax - elementsMin)) + frequencyOffset;
-            }
             incrementComparisons();
-            if (elementsArr[i] < elementsArr[j]) {
-
-                let temp = elementsArr[j];
-                elementsArr[j] = elementsArr[i];
-                elementsArr[i] = temp;
-                swapDom(child1, child2);
-                incrementSwaps();
+            if (elementsArr[j] < elementsArr[min_idx]){
+                unselectDOMPivot(min_idx);
+                min_idx = j;
+                selectDOMPivot(min_idx);
             }
-
-            child1 = document.querySelector(`.swapper:nth-child(${i + 1})`);
-            child2 = document.querySelector(`.swapper:nth-child(${j + 1})`);
-            unselectDOM(child1);
-            unselectDOM(child2);
-
+            unselectDOM(j);
         }
 
+        let temp = elementsArr[min_idx];
+        elementsArr[min_idx] = elementsArr[i];
+        elementsArr[i] = temp;
+        selectDOM(i);
+        swapDom(i, min_idx);
+        incrementSwaps();
+        unselectDOMPivot(i);
+        unselectDOM(min_idx);
+        if(fun){
+            funny.frequency.value = maxFrequency * ((elementsArr[j] - elementsMin) / (elementsMax - elementsMin)) + frequencyOffset;
+        }
+        
     }
+
     if(fun){
         funny.frequency.value = 0;
         funny.stop();
     }
-    console.log(elementsArr)
 }
 
 // Function that updates the speed
@@ -379,7 +382,6 @@ function updateSpeed() {
 // Function that calls all the intializing functions
 function primer() {
     elementCount = parseInt(document.getElementById('elementCount').value);
-    console.log(elementCount);
     elementsArr = [];
     clearDOMElements();
     initArr();
@@ -394,15 +396,15 @@ function sorter() {
 
     sortStyle = document.getElementById('sortStyle').value;
     sortStyle = (sortStyle === 'aescending')? false: true;
-    console.log(sortStyle);
     switch(document.getElementById("sortType").value){
         case "simple": simpleSort();break;
         case "bubbleSimple": bubbleSortSimple();break;
         case "bubbleConservative": bubbleSortConservative();break;
         case "selection": selectionSort();break;
+
         case "insertion": insertionSort();break;
         case "merge": mergeSort();break;
-        case "quick": quickSort();break;
+        case "quick": quickSort(0, elementCount-1);break;
         case "heap": heapSort();break;
     }
 

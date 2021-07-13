@@ -1,0 +1,43 @@
+<svg id="Group_1_copy_4" data-name="Group 1 copy 4" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1080" height="1080" viewBox="0 0 1080 1080">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #fd99b8;
+        stroke-width: 175px;
+        fill-rule: evenodd;
+      }
+
+      .cls-1 {
+        stroke: #f15b8a;
+        filter: url(#filter);
+      }
+
+      .cls-2 {
+        stroke: #fd99b8;
+        filter: url(#filter-2);
+      }
+    </style>
+    <filter id="filter" x="-18" y="110" width="699" height="870" filterUnits="userSpaceOnUse">
+      <feOffset result="offset" dy="4" in="SourceAlpha"/>
+      <feGaussianBlur result="blur" stdDeviation="5.196"/>
+      <feFlood result="flood" flood-opacity="0.35"/>
+      <feComposite result="composite" operator="in" in2="blur"/>
+      <feBlend result="blend" in="SourceGraphic"/>
+    </filter>
+    <filter id="filter-2" x="403" y="109" width="696" height="867" filterUnits="userSpaceOnUse">
+      <feOffset result="offset" dy="4" in="SourceAlpha"/>
+      <feGaussianBlur result="blur" stdDeviation="5.196"/>
+      <feFlood result="flood" flood-opacity="0.35"/>
+      <feComposite result="composite" operator="in" in2="blur"/>
+      <feBlend result="blend" in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g style="fill: #fd99b8; filter: url(#filter)">
+    <path id="Rectangle_1_copy_2" data-name="Rectangle 1 copy 2" class="cls-1" d="M555.252,224.391a25.729,25.729,0,0,1,6.12,35.867L143.187,850.5A25.728,25.728,0,0,1,101.2,820.756L519.386,230.511A25.728,25.728,0,0,1,555.252,224.391Z" style="stroke: inherit; filter: none; fill: inherit"/>
+  </g>
+  <use xlink:href="#Rectangle_1_copy_2" style="stroke: #f15b8a; filter: none; fill: none"/>
+  <g style="fill: #fd99b8; filter: url(#filter-2)">
+    <path id="Rectangle_1_copy" data-name="Rectangle 1 copy" class="cls-2" d="M527.42,223.391a25.729,25.729,0,0,0-6.12,35.867l415.531,586.5a25.728,25.728,0,0,0,41.986-29.747l-415.531-586.5A25.728,25.728,0,0,0,527.42,223.391Z" style="stroke: inherit; filter: none; fill: inherit"/>
+  </g>
+  <use xlink:href="#Rectangle_1_copy" style="stroke: #fd99b8; filter: none; fill: none"/>
+</svg>

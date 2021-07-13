@@ -23,6 +23,7 @@
             </a>
         </div>
     </div>
+
     <div class="panels" id ="panels" onscroll="navbarTextHeight()">
 
         <!--The hero panel-->
@@ -125,7 +126,7 @@
                     <!--Card - Sorting-->
                     
                     <a class="card-linker" href="./sorting.html" onmouseover="sorting_gif()" onmouseout="sorting_png()">
-                        <div class="card">
+                        <div class="card card-border">
                                 <div class="background-image unsorted-image" id="unsorted-image"></div>
                                 <div class="background-image sorting-gif" id="sorting-gif"></div>
                                 <div class="title-background">
@@ -141,7 +142,7 @@
 
                     
                     <!--Card - Searching-->
-                    <a class="card-linker" href="#" >
+                    <a class="card-linker" href="." >
                         <div class="card">
                                 <div class="background-image searching"></div>
                                 <div class="title-background">
@@ -156,7 +157,7 @@
                     </a>
                     
                     <!--Card - Trees-->
-                    <a class="card-linker" href="#" >
+                    <a class="card-linker" href="." >
                         <div class="card">
                                 <div class="background-image trees"></div>
                                 <div class="title-background">
@@ -176,6 +177,9 @@
 
     </div>
 
+    <a class="to-top" id="to-top" onclick="scrollToTop()">
+        <img src="./index/images/Go_to_top.svg" alt="Go_to_top">
+    </a>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.0/gsap.min.js"></script>
     <script>
         document.onload = e=>{
@@ -202,6 +206,19 @@
                 autoAlpha: 0,
                 ease: "ease-in-out",
                 duration: 0.55
+                }).play;
+            }
+            if(Math.ceil(element.scrollTop *100 / element.scrollHeight) >= 20 && document.getElementById("to-top").style.opacity == 0){
+                gsap.to("a.to-top", {
+                autoAlpha: 1,
+                ease: "ease-in-out",
+                duration: 0.3
+                }).play;
+            }else if(Math.ceil(element.scrollTop *100 / element.scrollHeight) < 20 && document.getElementById("to-top").style.opacity == 1){
+                gsap.to("a.to-top", {
+                autoAlpha: 0,
+                ease: "ease-in-out",
+                duration: 0.3
                 }).play;
             }
         }

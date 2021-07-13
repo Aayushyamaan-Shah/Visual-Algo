@@ -13,6 +13,8 @@ body {
   background-color: #202124;
   color: #e8eaed;
   font-family: 'Inter', serif;
+  position: relative;
+  font-size: 16px;
 }
 
 body .navbar {
@@ -273,8 +275,8 @@ body .panels .panel .cards-layout .cards a.card-linker {
 
 body .panels .panel .cards-layout .cards a.card-linker .card {
   position: relative;
-  width: 16rem;
-  height: 16rem;
+  width: 15rem;
+  height: 15rem;
   border-radius: 40px;
   overflow: hidden;
 }
@@ -336,6 +338,7 @@ body .panels .panel .cards-layout .cards a.card-linker .card .title {
 
 body .panels .panel .cards-layout .cards a.card-linker .card .title .text {
   margin: 0;
+  font-size: 0.9em;
   padding-top: 1rem;
   display: table-cell;
   vertical-align: middle;
@@ -349,6 +352,10 @@ body .panels .panel .cards-layout .cards a.card-linker .card .unsorted-image {
 body .panels .panel .cards-layout .cards a.card-linker .card .sorting-gif {
   opacity: 0;
   background-image: url("../images/sorting-transparent.gif");
+}
+
+body .panels .panel .cards-layout .cards a.card-linker .card-border {
+  border: 2px solid white;
 }
 
 body .panels .panel .cards-layout .cards a:hover a:link a:visited a:focus a:active .title {
@@ -373,6 +380,35 @@ body .panels :nth-child(even) .images {
   -webkit-box-ordinal-group: 2;
       -ms-flex-order: 1;
           order: 1;
+}
+
+body .to-top {
+  z-index: 6;
+  position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 3.5rem;
+  height: 3.5rem;
+  right: 0;
+  bottom: 0;
+  margin-right: 2rem;
+  margin-bottom: 2rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  overflow: hidden;
+  background-color: #e8eaed;
+  border-radius: 5000%;
+  opacity: 0;
+}
+
+body .to-top img {
+  width: 2rem;
+  height: 2rem;
 }
 
 .pause {

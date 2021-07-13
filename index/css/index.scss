@@ -8,14 +8,14 @@ $curve: 40px;
 *{
     box-sizing: border-box;
 }
-
 body{
     margin:0%;
     padding: 0%;
     background-color: $color-background-dt;
     color: $color-font-dt-main;
     font-family: 'Inter', serif;
-
+    position: relative;
+    font-size: 16px;
     .navbar{
         overflow: hidden;
         position: sticky;
@@ -193,8 +193,8 @@ body{
 
                         .card{
                             position: relative;
-                            width: 16rem;
-                            height: 16rem;
+                            width: 15rem;
+                            height: 15rem;
                             border-radius: 40px;
                             overflow: hidden;
     
@@ -247,6 +247,7 @@ body{
                                 justify-content: center;
                                 .text{
                                     margin: 0;
+                                    font-size: 0.9em;
                                     padding-top: 1rem;
                                     display: table-cell;
                                     vertical-align: middle;
@@ -261,7 +262,9 @@ body{
                                 background-image: url("../images/sorting-transparent.gif");
                             }
                         }
-                    
+                        .card-border{
+                            border: 2px solid white;
+                        }
                     }
                     a:hover a:link a:visited a:focus a:active{
                         .title{
@@ -292,6 +295,27 @@ body{
         }
     }
 
+    .to-top{
+        z-index: 6;
+        position: fixed;
+        display: flex;
+        width: 3.5rem;
+        height: 3.5rem;
+        right: 0;
+        bottom: 0;
+        margin-right: 2rem;
+        margin-bottom: 2rem;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background-color: $color-font-dt-main;
+        border-radius:percentage($number: 50);
+        opacity: 0;
+        img{
+            width: $size-button-to-top;
+            height: $size-button-to-top;
+        }
+    }
 }
 
 .pause{

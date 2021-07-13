@@ -75,11 +75,15 @@ body div.main div.flex_container div {
 }
 
 div.default {
-  background-color: #194162;
+  background-color: #202124;
 }
 
 div.selected {
   background-color: #07cff6;
+}
+
+div.selected-pivot {
+  background-color: red;
 }
 
 p.less {

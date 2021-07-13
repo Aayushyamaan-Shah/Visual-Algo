@@ -1,3 +1,4 @@
+@import '../../colors/colors';
 body{
     background-color: #0d2534;
     color: white;
@@ -47,11 +48,15 @@ body{
 }
 
 div.default{
-    background-color: #194162;
+    background-color: $color-background-dt;
 }
 
 div.selected{
-    background-color: #07cff6;
+    background-color: $color-bar-selected;
+}
+
+div.selected-pivot{
+    background-color: $color-bar-selected-pivot;
 }
 
 p.less{
