@@ -1,6 +1,6 @@
 @import '../../colors/colors';
 body{
-    background-color: #0d2534;
+    background-color: $color-background-dt;
     color: white;
     div.main{
 
@@ -14,7 +14,8 @@ body{
             margin-left: 5%;
             margin-right: 5%;
             height: 60vh;
-            border: 2px solid #0d2534;
+            border: 2px solid white;
+            border-radius: 0.5rem;
             
             display: flex;
             flex-direction: row;
@@ -48,20 +49,23 @@ body{
 }
 
 div.default{
-    background-color: $color-background-dt;
+    background-color: $color-logo-light;
 }
 
 div.selected{
-    background-color: $color-bar-selected;
+    background-color: $color-logo-dark;
 }
 
 div.selected-pivot{
-    background-color: $color-bar-selected-pivot;
+    background-color: white;
+    p.less{
+        color: $color-logo-light;
+    }
 }
 
 p.less{
-        color: greenyellow;
-        text-shadow: 1px 1px 0px #052000;
+        color: white;
+        text-shadow: 1px 1px 2px #052000;
         text-align: center;
 }
 

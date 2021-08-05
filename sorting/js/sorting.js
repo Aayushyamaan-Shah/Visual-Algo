@@ -358,6 +358,7 @@ async function selectionSort() {
         elementsArr[min_idx] = elementsArr[i];
         elementsArr[i] = temp;
         selectDOM(i);
+        await sleep(sortingSpeed[6 - speedSelector]);
         swapDom(i, min_idx);
         incrementSwaps();
         unselectDOMPivot(i);
@@ -401,7 +402,7 @@ function sorter() {
         case "bubbleSimple": bubbleSortSimple();break;
         case "bubbleConservative": bubbleSortConservative();break;
         case "selection": selectionSort();break;
-
+        
         case "insertion": insertionSort();break;
         case "merge": mergeSort();break;
         case "quick": quickSort(0, elementCount-1);break;

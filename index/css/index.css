@@ -401,7 +401,6 @@ body .to-top {
       -ms-flex-pack: center;
           justify-content: center;
   overflow: hidden;
-  background-color: #e8eaed;
   border-radius: 5000%;
   opacity: 0;
 }
